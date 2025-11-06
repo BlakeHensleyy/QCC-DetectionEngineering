@@ -7,8 +7,6 @@ Before detecting malicious activity, you first need data to detect on. **Telemet
 
 ![visibility-quad](images/visibility-quad.png)
 
-*Source: https://medium.com/anton-on-security/soc-visibility-triad-is-now-a-quad-soc-visibility-quad-2025-72811401073a*
-
 ### Evolution from Triad to Quad
 
 The traditional **SOC Visibility Triad** consisted of three pillars:
@@ -38,9 +36,9 @@ The **SOC Visibility Quad** adds a fourth critical pillar:
 
 4. **Application/ADR** - Application-level visibility and protection
    - SaaS application activity (M365, Salesforce, GitHub)
+   - AI Agents reveal completely new attack avenues - see [PromptIntel](https://promptintel.novahunting.ai/feed)
    - API calls and data access patterns
    - User behavior within applications
-   - Cloud workload protection
 
 ## Types of Telemetry Sources
 
@@ -105,8 +103,6 @@ Although this is the case, there is still value to using a Sysmon or Auditd to f
 - **Zero Trust Network Access** - ZTNA session logs
 - **Secure Access Service Edge** - SASE platform events
 
-*Source: https://medium.com/anton-on-security/one-more-time-on-siem-telemetry-log-sources-b0a88572dac9*
-
 ## The Output-Driven SIEM Philosophy
 
 ### Key Principle
@@ -164,34 +160,18 @@ When evaluating telemetry sources, consider:
 - Is data loss acceptable?
 - How do you monitor collection health?
 
-## Mapping Telemetry to Detection
-
-Use frameworks to ensure comprehensive coverage:
-
-### MITRE ATT&CK Data Sources
-- Maps specific data types to techniques
-- Example: "Process Creation" → Execution techniques
-- Reference: https://attack.mitre.org/datasources/
-
-### Detection Engineering Workflow
-1. **Identify the threat** - What are you trying to detect?
-2. **Map to ATT&CK** - Which techniques are used?
-3. **Identify data sources** - What telemetry reveals this?
-4. **Validate coverage** - Do you collect this data?
-5. **Build detection** - Create the alert logic
-6. **Test and tune** - Validate effectiveness
-
 ## Key Takeaways
 
-✅ **Start with use cases, not data sources**
-✅ **Map telemetry to threat detection frameworks**
-✅ **Implement data tiering to control costs**
-✅ **Monitor collection health and data quality**
-✅ **Regularly assess coverage gaps**
+- **Start with use cases, not data sources**
+- **Map telemetry to threat detection frameworks**
+- **Implement data tiering to control costs**
+- **Monitor collection health and data quality**
+- **Regularly assess coverage gaps**
 
-## Additional Resources
+### References
+https://medium.com/anton-on-security/one-more-time-on-siem-telemetry-log-sources-b0a88572dac9
+https://medium.com/anton-on-security/soc-visibility-triad-is-now-a-quad-soc-visibility-quad-2025-72811401073a
+https://medium.com/anton-on-security/output-driven-siem-13-years-later-c549370abf11
+https://blog.securitybreak.io/introducing-promptintel-1624d03045a3
 
-- **EDR Telemetry Project**: https://www.edr-telemetry.com/
-- **MITRE ATT&CK Data Sources**: https://attack.mitre.org/datasources/
-- **Anton Chuvakin's Blog**: https://medium.com/anton-on-security/
-- **Palantir's Alerting and Detection Strategies**: https://github.com/palantir/alerting-detection-strategy-framework
+*If it isn't obvious, Anton Chauvkin's content is great.*
