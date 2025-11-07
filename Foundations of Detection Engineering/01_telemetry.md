@@ -169,9 +169,9 @@ When evaluating telemetry sources, consider:
 - **Regularly assess coverage gaps**
 
 ### References
-https://medium.com/anton-on-security/one-more-time-on-siem-telemetry-log-sources-b0a88572dac9
-https://medium.com/anton-on-security/soc-visibility-triad-is-now-a-quad-soc-visibility-quad-2025-72811401073a
-https://medium.com/anton-on-security/output-driven-siem-13-years-later-c549370abf11
-https://blog.securitybreak.io/introducing-promptintel-1624d03045a3
+- https://medium.com/anton-on-security/one-more-time-on-siem-telemetry-log-sources-b0a88572dac9
+- https://medium.com/anton-on-security/soc-visibility-triad-is-now-a-quad-soc-visibility-quad-2025-72811401073a
+- https://medium.com/anton-on-security/output-driven-siem-13-years-later-c549370abf11
+- https://blog.securitybreak.io/introducing-promptintel-1624d03045a3
 
 *If it isn't obvious, Anton Chauvkin's content is great.*
