@@ -424,7 +424,7 @@ This creates a file named `data_sources_[Name].json` in the `output/` folder.
 > ```
 >
 > **Or download from the source:**
-> 1. Download the latest ATT&CK STIX data from https://github.com/mitre-attack/attack-stix-data/releases
+> 1. Download the 17.0 version ATT&CK STIX data from https://github.com/mitre-attack/attack-stix-data/archive/refs/tags/v17.0.zip
 > 2. Extract the ZIP file to a local directory (e.g., `~/attack-stix-data-17.0`)
 > 3. Add `--local-stix-path` to your command:
 >    ```bash
