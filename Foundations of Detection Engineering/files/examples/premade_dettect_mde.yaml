@@ -1,6 +1,6 @@
 version: 1.1
 file_type: data-source-administration
-name: 'EDR: CrowdStrike Falcon'
+name: 'EDR: Microsoft Defender for Endpoint (MDE)'
 domain: enterprise-attack
 systems:
   - applicable_to: all
@@ -12,30 +12,14 @@ data_sources:
   - data_source_name: Process Creation
     data_source:
       - applicable_to:
-          - all
+          - Windows
+          - Linux 
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'Full support on Windows and Linux'
-        data_quality:
-          device_completeness: 5
-          data_field_completeness: 5
-          timeliness: 5
-          consistency: 5
-          retention: 5
-  
-  - data_source_name: Process Termination
-    data_source:
-      - applicable_to:
-          - all
-        date_registered: null
-        date_connected: null
-        products:
-          - CrowdStrike Falcon
-        available_for_data_analytics: true
-        comment: 'Full support on both platforms'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
@@ -50,7 +34,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'Windows only - Full support'
         data_quality:
@@ -67,7 +51,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'Process Tampering Activity - Full support'
         data_quality:
@@ -81,12 +65,13 @@ data_sources:
     data_source:
       - applicable_to:
           - Windows
+          - Linux 
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'Includes call stacks - Advanced telemetry'
+        comment: 'Available via process creation events'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
@@ -99,12 +84,13 @@ data_sources:
     data_source:
       - applicable_to:
           - Windows
+          - Linux
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'Image/Library Loaded - Windows only'
+        comment: 'Image/Library Loaded - Windows and Linux'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
@@ -116,11 +102,12 @@ data_sources:
   - data_source_name: File Creation
     data_source:
       - applicable_to:
-          - all
+          - Windows
+          - Linux 
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'Full support on Windows and Linux'
         data_quality:
@@ -134,12 +121,13 @@ data_sources:
     data_source:
       - applicable_to:
           - Windows
+          - Linux 
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'Windows only - Full support'
+        comment: 'Full support on Windows and Linux'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
@@ -150,30 +138,13 @@ data_sources:
   - data_source_name: File Modification
     data_source:
       - applicable_to:
-          - all
-        date_registered: null
-        date_connected: null
-        products:
-          - CrowdStrike Falcon
-        available_for_data_analytics: true
-        comment: 'Includes file modification and renaming - Full support'
-        data_quality:
-          device_completeness: 5
-          data_field_completeness: 5
-          timeliness: 5
-          consistency: 5
-          retention: 5
-  
-  - data_source_name: File Metadata
-    data_source:
-      - applicable_to:
           - Windows
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'File downloaded tracking - Full support'
+        comment: 'Includes file modification and renaming - Full support'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
@@ -185,26 +156,9 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'Via file events'
-        data_quality:
-          device_completeness: 5
-          data_field_completeness: 4
-          timeliness: 5
-          consistency: 5
-          retention: 5
-  
-  - data_source_name: File Access
-    data_source:
-      - applicable_to:
-          - Windows
-        date_registered: null
-        date_connected: null
-        products:
-          - CrowdStrike Falcon
-        available_for_data_analytics: true
-        comment: 'File Opened - Partial support'
+        comment: 'Partial support on Linux'
         data_quality:
           device_completeness: 3
           data_field_completeness: 3
@@ -216,13 +170,14 @@ data_sources:
   - data_source_name: Network Connection Creation
     data_source:
       - applicable_to:
-          - all
+          - Windows
+          - Linux 
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'TCP/UDP connections on both platforms - Full support'
+        comment: 'TCP connections on both platforms - Full support'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
@@ -233,13 +188,13 @@ data_sources:
   - data_source_name: Network Traffic Flow
     data_source:
       - applicable_to:
-          - all
+          - Windows
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'DNS queries, TCP/UDP flows - Full support'
+        comment: 'DNS queries, TCP flows - Full support on Windows'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
@@ -250,13 +205,13 @@ data_sources:
   - data_source_name: Network Traffic Content
     data_source:
       - applicable_to:
-          - all
+          - Windows
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'DNS queries on both platforms'
+        comment: 'URL and DNS query monitoring - Full support'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
@@ -271,12 +226,12 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'Network socket listen events'
         data_quality:
           device_completeness: 5
-          data_field_completeness: 5
+          data_field_completeness: 4
           timeliness: 5
           consistency: 5
           retention: 5
@@ -285,13 +240,14 @@ data_sources:
   - data_source_name: User Account Authentication
     data_source:
       - applicable_to:
-          - all
+          - Windows
+          - Linux 
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'Login/logoff/failed on both platforms - Full support'
+        comment: 'Login on Windows, login/failed on Linux - Full support'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
@@ -306,7 +262,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'Windows only - Full support'
         data_quality:
@@ -323,7 +279,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'Windows only - Full support'
         data_quality:
@@ -340,14 +296,14 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'Partial support'
+        comment: 'Full support'
         data_quality:
-          device_completeness: 3
-          data_field_completeness: 3
+          device_completeness: 5
+          data_field_completeness: 5
           timeliness: 5
-          consistency: 3
+          consistency: 5
           retention: 5
   
   # Windows Registry - Windows Only
@@ -358,14 +314,14 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'Partial support'
+        comment: 'Full support'
         data_quality:
-          device_completeness: 3
-          data_field_completeness: 3
+          device_completeness: 5
+          data_field_completeness: 5
           timeliness: 5
-          consistency: 3
+          consistency: 5
           retention: 5
   
   - data_source_name: Windows Registry Key Modification
@@ -375,14 +331,14 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'Partial support'
+        comment: 'Full support'
         data_quality:
-          device_completeness: 3
-          data_field_completeness: 3
+          device_completeness: 5
+          data_field_completeness: 5
           timeliness: 5
-          consistency: 3
+          consistency: 5
           retention: 5
   
   - data_source_name: Windows Registry Key Deletion
@@ -391,15 +347,16 @@ data_sources:
           - Windows
         date_registered: null
         date_connected: null
-        products: []
-        available_for_data_analytics: false
-        comment: 'Not supported'
+        products:
+          - Microsoft Defender for Endpoint
+        available_for_data_analytics: true
+        comment: 'Full support'
         data_quality:
-          device_completeness: 0
-          data_field_completeness: 0
-          timeliness: 0
-          consistency: 0
-          retention: 0
+          device_completeness: 5
+          data_field_completeness: 5
+          timeliness: 5
+          consistency: 5
+          retention: 5
   
   # Scheduled Job Activity
   - data_source_name: Scheduled Job Creation
@@ -409,7 +366,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'Windows scheduled tasks - Full support'
         data_quality:
@@ -426,7 +383,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'Windows scheduled tasks - Full support'
         data_quality:
@@ -443,7 +400,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'Includes deletion events'
         data_quality:
@@ -461,48 +418,28 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'Full support'
+        comment: 'Windows - Full support'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
           retention: 5
-  
-  - data_source_name: Service Modification
-    data_source:
       - applicable_to:
-          - Windows
+          - Linux
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'Partial support'
+        comment: 'Linux - Partial support'
         data_quality:
-          device_completeness: 3
-          data_field_completeness: 3
+          device_completeness: 2
+          data_field_completeness: 2
           timeliness: 5
           consistency: 3
-          retention: 5
-  
-  - data_source_name: Service Metadata
-    data_source:
-      - applicable_to:
-          - Windows
-        date_registered: null
-        date_connected: null
-        products:
-          - CrowdStrike Falcon
-        available_for_data_analytics: true
-        comment: 'Available via service events'
-        data_quality:
-          device_completeness: 5
-          data_field_completeness: 4
-          timeliness: 5
-          consistency: 5
           retention: 5
   
   # Driver Activity - Windows
@@ -513,49 +450,45 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'Full support'
         data_quality:
-          device_completeness: 5
-          data_field_completeness: 5
+          device_completeness: 3
+          data_field_completeness: 3
           timeliness: 5
           consistency: 5
           retention: 5
-  
-  - data_source_name: Driver Metadata
-    data_source:
       - applicable_to:
-          - Windows
+          - Linux
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'Driver modification tracking'
+        comment: 'Via enabling telemetry'
         data_quality:
-          device_completeness: 5
-          data_field_completeness: 5
+          device_completeness: 4
+          data_field_completeness: 4
           timeliness: 5
-          consistency: 5
+          consistency: 4
           retention: 5
   
-  # Kernel Module - Linux
-  - data_source_name: Kernel Module Load
+  - data_source_name: Driver Metadata
     data_source:
       - applicable_to:
           - Linux
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'eBPF event monitoring'
+        comment: 'eBPF event monitoring - Via enabling telemetry'
         data_quality:
-          device_completeness: 5
-          data_field_completeness: 5
+          device_completeness: 4
+          data_field_completeness: 4
           timeliness: 5
-          consistency: 5
+          consistency: 4
           retention: 5
   
   # Named Pipe - Windows Only
@@ -566,7 +499,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'Pipe creation and connection - Full support'
         data_quality:
@@ -584,7 +517,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'WMI event consumer, filter, and bindings - Full support'
         data_quality:
@@ -598,11 +531,12 @@ data_sources:
   - data_source_name: Command Execution
     data_source:
       - applicable_to:
-          - all
+          - Windows
+          - Linux 
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'Via process creation with command line arguments'
         data_quality:
@@ -619,9 +553,9 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'Via call stack telemetry - Advanced'
+        comment: 'Win32 API Telemetry - Full support'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
@@ -633,11 +567,12 @@ data_sources:
   - data_source_name: Script Execution
     data_source:
       - applicable_to:
-          - all
+          - Windows
+          - Linux 
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'PowerShell on Windows, script content on Linux - Full support'
         data_quality:
@@ -647,35 +582,17 @@ data_sources:
           consistency: 5
           retention: 5
   
-  # Application Logs
-  - data_source_name: Application Log Content
-    data_source:
-      - applicable_to:
-          - all
-        date_registered: null
-        date_connected: null
-        products:
-          - CrowdStrike Falcon
-        available_for_data_analytics: true
-        comment: 'Agent logs and errors'
-        data_quality:
-          device_completeness: 5
-          data_field_completeness: 5
-          timeliness: 5
-          consistency: 5
-          retention: 5
-  
-  # Volume Operations - Windows Only
-  - data_source_name: Volume Deletion
+  # Active Directory - Windows Only
+  - data_source_name: Active Directory Object Modification
     data_source:
       - applicable_to:
           - Windows
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'Volume Shadow Copy deletion - Full support'
+        comment: 'Group Policy modification'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
@@ -691,7 +608,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'Virtual disk mount, USB device mount - Full support'
         data_quality:
@@ -708,7 +625,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
         comment: 'USB mount/unmount - Full support'
         data_quality:
@@ -722,13 +639,13 @@ data_sources:
   - data_source_name: Internal DNS [DeTT&CT data source]
     data_source:
       - applicable_to:
-          - all
+          - Windows
         date_registered: null
         date_connected: null
         products:
-          - CrowdStrike Falcon
+          - Microsoft Defender for Endpoint
         available_for_data_analytics: true
-        comment: 'DNS query logging available'
+        comment: 'DNS query logging available on Windows'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5

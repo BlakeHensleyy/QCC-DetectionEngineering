@@ -1,6 +1,6 @@
 version: 1.1
 file_type: data-source-administration
-name: 'EDR: SentinelOne'
+name: 'EDR: CrowdStrike Falcon'
 domain: enterprise-attack
 systems:
   - applicable_to: all
@@ -12,11 +12,12 @@ data_sources:
   - data_source_name: Process Creation
     data_source:
       - applicable_to:
-          - all
+          - Windows
+          - Linux 
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
         comment: 'Full support on Windows and Linux'
         data_quality:
@@ -24,23 +25,25 @@ data_sources:
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   - data_source_name: Process Termination
     data_source:
       - applicable_to:
-          - Linux
+          - Windows
+          - Linux 
         date_registered: null
         date_connected: null
-        products: []
-        available_for_data_analytics: false
-        comment: 'Not supported on Linux or Windows'
+        products:
+          - CrowdStrike Falcon
+        available_for_data_analytics: true
+        comment: 'Full support on both platforms'
         data_quality:
-          device_completeness: 0
-          data_field_completeness: 0
-          timeliness: 0
-          consistency: 0
-          retention: 0
+          device_completeness: 5
+          data_field_completeness: 5
+          timeliness: 5
+          consistency: 5
+          retention: 5
   
   - data_source_name: Process Access
     data_source:
@@ -49,7 +52,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
         comment: 'Windows only - Full support'
         data_quality:
@@ -57,41 +60,41 @@ data_sources:
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   - data_source_name: Process Modification
     data_source:
       - applicable_to:
-          - all
+          - Windows
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'Process Tampering Activity - Full support on Windows and Linux'
+        comment: 'Process Tampering Activity - Full support'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   - data_source_name: Process Metadata
     data_source:
       - applicable_to:
-          - all
+          - Windows
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'Available via process creation events'
+        comment: 'Includes call stacks - Advanced telemetry'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   # Module/Library Activity - Windows
   - data_source_name: Module Load
@@ -101,7 +104,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
         comment: 'Image/Library Loaded - Windows only'
         data_quality:
@@ -109,17 +112,18 @@ data_sources:
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   # File Activity - Both Platforms
   - data_source_name: File Creation
     data_source:
       - applicable_to:
-          - all
+          - Windows
+          - Linux 
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
         comment: 'Full support on Windows and Linux'
         data_quality:
@@ -127,33 +131,34 @@ data_sources:
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   - data_source_name: File Deletion
     data_source:
       - applicable_to:
-          - all
+          - Windows
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'Full support on Windows and Linux'
+        comment: 'Windows only - Full support'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   - data_source_name: File Modification
     data_source:
       - applicable_to:
-          - all
+          - Windows
+          - Linux 
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
         comment: 'Includes file modification and renaming - Full support'
         data_quality:
@@ -161,127 +166,163 @@ data_sources:
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   - data_source_name: File Metadata
-    data_source:
-      - applicable_to:
-          - all
-        date_registered: null
-        date_connected: null
-        products:
-          - SentinelOne
-        available_for_data_analytics: true
-        comment: 'Available via file events'
-        data_quality:
-          device_completeness: 5
-          data_field_completeness: 4
-          timeliness: 5
-          consistency: 5
-          retention: 4
-  
-  - data_source_name: File Access
-    data_source:
-      - applicable_to:
-          - all
-        date_registered: null
-        date_connected: null
-        products: []
-        available_for_data_analytics: false
-        comment: 'Not supported'
-        data_quality:
-          device_completeness: 0
-          data_field_completeness: 0
-          timeliness: 0
-          consistency: 0
-          retention: 0
-  
-  # Network Activity - Both Platforms
-  - data_source_name: Network Connection Creation
-    data_source:
-      - applicable_to:
-          - all
-        date_registered: null
-        date_connected: null
-        products:
-          - SentinelOne
-        available_for_data_analytics: true
-        comment: 'TCP connections on both platforms - Full support'
-        data_quality:
-          device_completeness: 5
-          data_field_completeness: 5
-          timeliness: 5
-          consistency: 5
-          retention: 4
-  
-  - data_source_name: Network Traffic Flow
-    data_source:
-      - applicable_to:
-          - all
-        date_registered: null
-        date_connected: null
-        products:
-          - SentinelOne
-        available_for_data_analytics: true
-        comment: 'DNS queries - Full support on both platforms'
-        data_quality:
-          device_completeness: 5
-          data_field_completeness: 5
-          timeliness: 5
-          consistency: 5
-          retention: 4
-  
-  - data_source_name: Network Traffic Content
     data_source:
       - applicable_to:
           - Windows
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'URL monitoring - Via enabling telemetry on Windows'
+        comment: 'File downloaded tracking - Full support'
         data_quality:
-          device_completeness: 4
+          device_completeness: 5
+          data_field_completeness: 5
+          timeliness: 5
+          consistency: 5
+          retention: 5
+      - applicable_to:
+          - Linux
+        date_registered: null
+        date_connected: null
+        products:
+          - CrowdStrike Falcon
+        available_for_data_analytics: true
+        comment: 'Via file events'
+        data_quality:
+          device_completeness: 5
           data_field_completeness: 4
           timeliness: 5
-          consistency: 4
-          retention: 4
+          consistency: 5
+          retention: 5
+  
+  - data_source_name: File Access
+    data_source:
+      - applicable_to:
+          - Windows
+        date_registered: null
+        date_connected: null
+        products:
+          - CrowdStrike Falcon
+        available_for_data_analytics: true
+        comment: 'File Opened - Partial support'
+        data_quality:
+          device_completeness: 3
+          data_field_completeness: 3
+          timeliness: 5
+          consistency: 3
+          retention: 5
+  
+  # Network Activity - Both Platforms
+  - data_source_name: Network Connection Creation
+    data_source:
+      - applicable_to:
+          - Windows
+          - Linux 
+        date_registered: null
+        date_connected: null
+        products:
+          - CrowdStrike Falcon
+        available_for_data_analytics: true
+        comment: 'TCP/UDP connections on both platforms - Full support'
+        data_quality:
+          device_completeness: 5
+          data_field_completeness: 5
+          timeliness: 5
+          consistency: 5
+          retention: 5
+  
+  - data_source_name: Network Traffic Flow
+    data_source:
+      - applicable_to:
+          - Windows
+          - Linux 
+        date_registered: null
+        date_connected: null
+        products:
+          - CrowdStrike Falcon
+        available_for_data_analytics: true
+        comment: 'DNS queries, TCP/UDP flows - Full support'
+        data_quality:
+          device_completeness: 5
+          data_field_completeness: 5
+          timeliness: 5
+          consistency: 5
+          retention: 5
+  
+  - data_source_name: Network Traffic Content
+    data_source:
+      - applicable_to:
+          - Windows
+          - Linux 
+        date_registered: null
+        date_connected: null
+        products:
+          - CrowdStrike Falcon
+        available_for_data_analytics: true
+        comment: 'DNS queries on both platforms'
+        data_quality:
+          device_completeness: 5
+          data_field_completeness: 5
+          timeliness: 5
+          consistency: 5
+          retention: 5
+  
+  - data_source_name: Network Share Access
+    data_source:
+      - applicable_to:
+          - Linux
+        date_registered: null
+        date_connected: null
+        products:
+          - CrowdStrike Falcon
+        available_for_data_analytics: true
+        comment: 'Network socket listen events'
+        data_quality:
+          device_completeness: 5
+          data_field_completeness: 5
+          timeliness: 5
+          consistency: 5
+          retention: 5
   
   # User Account Activity
   - data_source_name: User Account Authentication
     data_source:
       - applicable_to:
-          - all
+          - Windows
+          - Linux 
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'Account login/logoff on Windows, logon on Linux - Full support'
+        comment: 'Login/logoff/failed on both platforms - Full support'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   - data_source_name: User Account Creation
     data_source:
       - applicable_to:
-          - all
+          - Windows
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'Windows: Full support, Linux: Full support'
+        comment: 'Windows only - Full support'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   - data_source_name: User Account Deletion
     data_source:
@@ -290,30 +331,15 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
-          - Windows Event Logs
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'Via Event Logs on Windows'
-        data_quality:
-          device_completeness: 5
-          data_field_completeness: 4
-          timeliness: 5
-          consistency: 5
-          retention: 4
-      - applicable_to:
-          - Linux
-        date_registered: null
-        date_connected: null
-        products:
-          - SentinelOne
-        available_for_data_analytics: true
-        comment: 'Full support on Linux'
+        comment: 'Windows only - Full support'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   - data_source_name: User Account Modification
     data_source:
@@ -322,16 +348,15 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
-          - Windows Event Logs
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'Via Event Logs'
+        comment: 'Partial support'
         data_quality:
-          device_completeness: 5
-          data_field_completeness: 4
+          device_completeness: 3
+          data_field_completeness: 3
           timeliness: 5
-          consistency: 5
-          retention: 4
+          consistency: 3
+          retention: 5
   
   # Windows Registry - Windows Only
   - data_source_name: Windows Registry Key Creation
@@ -341,67 +366,33 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'Full support'
+        comment: 'Partial support'
         data_quality:
-          device_completeness: 5
-          data_field_completeness: 5
+          device_completeness: 3
+          data_field_completeness: 3
           timeliness: 5
-          consistency: 5
-          retention: 4
-  
-  - data_source_name: Windows Registry Key Modification
-    data_source:
-      - applicable_to:
-          - Windows
-        date_registered: null
-        date_connected: null
-        products:
-          - SentinelOne
-        available_for_data_analytics: true
-        comment: 'Full support'
-        data_quality:
-          device_completeness: 5
-          data_field_completeness: 5
-          timeliness: 5
-          consistency: 5
-          retention: 4
-  
-  - data_source_name: Windows Registry Key Deletion
-    data_source:
-      - applicable_to:
-          - Windows
-        date_registered: null
-        date_connected: null
-        products:
-          - SentinelOne
-        available_for_data_analytics: true
-        comment: 'Full support'
-        data_quality:
-          device_completeness: 5
-          data_field_completeness: 5
-          timeliness: 5
-          consistency: 5
-          retention: 4
+          consistency: 3
+          retention: 5
   
   # Scheduled Job Activity
   - data_source_name: Scheduled Job Creation
     data_source:
       - applicable_to:
-          - all
+          - Windows
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'Scheduled tasks on Windows, cron on Linux - Full support'
+        comment: 'Windows scheduled tasks - Full support'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   - data_source_name: Scheduled Job Modification
     data_source:
@@ -410,7 +401,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
         comment: 'Windows scheduled tasks - Full support'
         data_quality:
@@ -418,56 +409,42 @@ data_sources:
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
+  
+  - data_source_name: Scheduled Job Metadata
+    data_source:
       - applicable_to:
-          - Linux
+          - Windows
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'Linux cron - Full support'
+        comment: 'Includes deletion events'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
-  
-  - data_source_name: Scheduled Job Metadata
-    data_source:
-      - applicable_to:
-          - all
-        date_registered: null
-        date_connected: null
-        products:
-          - SentinelOne
-        available_for_data_analytics: true
-        comment: 'Available via scheduled job events'
-        data_quality:
-          device_completeness: 5
-          data_field_completeness: 4
-          timeliness: 5
-          consistency: 5
-          retention: 4
+          retention: 5
   
   # Service Activity
   - data_source_name: Service Creation
     data_source:
       - applicable_to:
-          - all
+          - Windows
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'Full support on both platforms'
+        comment: 'Full support'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   - data_source_name: Service Modification
     data_source:
@@ -476,48 +453,17 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'Via enabling telemetry'
+        comment: 'Partial support'
         data_quality:
-          device_completeness: 4
-          data_field_completeness: 4
+          device_completeness: 3
+          data_field_completeness: 3
           timeliness: 5
-          consistency: 4
-          retention: 4
-      - applicable_to:
-          - Linux
-        date_registered: null
-        date_connected: null
-        products:
-          - SentinelOne
-        available_for_data_analytics: true
-        comment: 'Full support on Linux'
-        data_quality:
-          device_completeness: 5
-          data_field_completeness: 5
-          timeliness: 5
-          consistency: 5
-          retention: 4
+          consistency: 3
+          retention: 5
   
-  - data_source_name: Service Metadata
-    data_source:
-      - applicable_to:
-          - all
-        date_registered: null
-        date_connected: null
-        products:
-          - SentinelOne
-        available_for_data_analytics: true
-        comment: 'Available via service events'
-        data_quality:
-          device_completeness: 5
-          data_field_completeness: 4
-          timeliness: 5
-          consistency: 5
-          retention: 4
-  
-  # Driver Activity - Windows Only
+  # Driver Activity - Windows
   - data_source_name: Driver Load
     data_source:
       - applicable_to:
@@ -525,7 +471,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
         comment: 'Full support'
         data_quality:
@@ -533,7 +479,7 @@ data_sources:
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   - data_source_name: Driver Metadata
     data_source:
@@ -542,15 +488,33 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'Available via driver load events'
+        comment: 'Driver modification tracking'
         data_quality:
           device_completeness: 5
-          data_field_completeness: 4
+          data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
+  
+  # Kernel Module - Linux
+  - data_source_name: Kernel Module Load
+    data_source:
+      - applicable_to:
+          - Linux
+        date_registered: null
+        date_connected: null
+        products:
+          - CrowdStrike Falcon
+        available_for_data_analytics: true
+        comment: 'eBPF event monitoring'
+        data_quality:
+          device_completeness: 5
+          data_field_completeness: 5
+          timeliness: 5
+          consistency: 5
+          retention: 5
   
   # Named Pipe - Windows Only
   - data_source_name: Named Pipe Metadata
@@ -560,15 +524,15 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'Via enabling telemetry - Pipe creation and connection'
+        comment: 'Pipe creation and connection - Full support'
         data_quality:
-          device_completeness: 4
-          data_field_completeness: 4
+          device_completeness: 5
+          data_field_completeness: 5
           timeliness: 5
-          consistency: 4
-          retention: 4
+          consistency: 5
+          retention: 5
   
   # WMI Activity - Windows Only
   - data_source_name: WMI Creation
@@ -578,7 +542,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
         comment: 'WMI event consumer, filter, and bindings - Full support'
         data_quality:
@@ -586,17 +550,18 @@ data_sources:
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   # Command Execution
   - data_source_name: Command Execution
     data_source:
       - applicable_to:
-          - all
+          - Windows
+          - Linux 
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
         comment: 'Via process creation with command line arguments'
         data_quality:
@@ -604,35 +569,54 @@ data_sources:
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
-  # Script Execution - Windows
-  - data_source_name: Script Execution
+  - data_source_name: OS API Execution
     data_source:
       - applicable_to:
           - Windows
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'PowerShell script block logging - Full support'
+        comment: 'Via call stack telemetry - Advanced'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
+  
+  # Script Execution
+  - data_source_name: Script Execution
+    data_source:
+      - applicable_to:
+          - Windows
+          - Linux 
+        date_registered: null
+        date_connected: null
+        products:
+          - CrowdStrike Falcon
+        available_for_data_analytics: true
+        comment: 'PowerShell on Windows, script content on Linux - Full support'
+        data_quality:
+          device_completeness: 5
+          data_field_completeness: 5
+          timeliness: 5
+          consistency: 5
+          retention: 5
   
   # Application Logs
   - data_source_name: Application Log Content
     data_source:
       - applicable_to:
-          - all
+          - Windows
+          - Linux 
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
         comment: 'Agent logs and errors'
         data_quality:
@@ -640,7 +624,7 @@ data_sources:
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
   # Volume Operations - Windows Only
   - data_source_name: Volume Deletion
@@ -650,7 +634,7 @@ data_sources:
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
         comment: 'Volume Shadow Copy deletion - Full support'
         data_quality:
@@ -658,35 +642,53 @@ data_sources:
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
   
-  # Active Directory - Windows Only
-  - data_source_name: Active Directory Object Modification
+  # Drive Operations - Windows Only
+  - data_source_name: Drive Creation
     data_source:
       - applicable_to:
           - Windows
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
-        comment: 'Group Policy modification'
+        comment: 'Virtual disk mount, USB device mount - Full support'
         data_quality:
           device_completeness: 5
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
+  
+  - data_source_name: Drive Modification
+    data_source:
+      - applicable_to:
+          - Windows
+        date_registered: null
+        date_connected: null
+        products:
+          - CrowdStrike Falcon
+        available_for_data_analytics: true
+        comment: 'USB mount/unmount - Full support'
+        data_quality:
+          device_completeness: 5
+          data_field_completeness: 5
+          timeliness: 5
+          consistency: 5
+          retention: 5
   
   # DeTT&CT Custom Data Sources
   - data_source_name: Internal DNS [DeTT&CT data source]
     data_source:
       - applicable_to:
-          - all
+          - Windows
+          - Linux 
         date_registered: null
         date_connected: null
         products:
-          - SentinelOne
+          - CrowdStrike Falcon
         available_for_data_analytics: true
         comment: 'DNS query logging available'
         data_quality:
@@ -694,4 +696,4 @@ data_sources:
           data_field_completeness: 5
           timeliness: 5
           consistency: 5
-          retention: 4
+          retention: 5
