@@ -416,29 +416,29 @@ python dettect.py ds -fd output/[your-company]-data-sources.yaml -l
 
 Replace `[your-company]` with your actual filename (e.g., `acme-corp-data-sources.yaml`).
 
-This creates a file named `data_sources_[timestamp].json` in the `output/` folder.
+This creates a file named `data_sources_[Name].json` in the `output/` folder.
 
 > **⚠️ Troubleshooting**: If you encounter a "Cannot connect to MITRE's CTI TAXII server" error, add the `--ignore-verify-tls` argument:
 > ```bash
 > python dettect.py ds -fd output/[your-company]-data-sources.yaml -l --ignore-verify-tls
 > ```
 >
-> **If that still doesn't work**: You can use the Stix files in `files/attack-stix-data-17.0.zip`:
-> - Extract this archive to use with the `--local-stix-path` argument.
->
 > **Or download from the source:**
 > 1. Download the latest ATT&CK STIX data from https://github.com/mitre-attack/attack-stix-data/releases
 > 2. Extract the ZIP file to a local directory (e.g., `~/attack-stix-data-17.0`)
 > 3. Add `--local-stix-path` to your command:
 >    ```bash
->    python dettect.py ds -fd output/[your-company]-data-sources.yaml -l --local-stix-path ~/attack-stix-data-17.0
+>    python dettect.py ds -fd output/[your-company]-data-sources.yaml -l --local-stix-path input/attack-stix-data-17.0
 >    ```
+>
+> **If that still doesn't work**: You can use the Stix files in `files/attack-stix-data-17.0.zip`:
+> - Extract this archive to use with the `--local-stix-path` argument.
 
 ### Step 2: View in ATT&CK Navigator
 
 1. Go to https://mitre-attack.github.io/attack-navigator/
 2. Click **"Open Existing Layer"** → **"Upload from local"**
-3. Select your `data_sources_[timestamp].json` file
+3. Select your `data_sources_[Name].json` file
 
 **Color meanings** (data source availability percentage per technique):
 - **Dark (75-100%)**: You have most/all required data sources
@@ -446,6 +446,7 @@ This creates a file named `data_sources_[timestamp].json` in the `output/` folde
 - **Light (1-25%)**: Very few of the required data sources
 - **White/Gray**: No data sources available
 
+![telemetry-map](images/telemetry-map.png)
 ### Step 3: Analyze Your Data Source Gaps
 
 **Key Questions:**
@@ -539,10 +540,6 @@ python dettectinator.py -p TechniqueCsv --file my-detections.csv --output output
 
 This generates a YAML file containing your detection coverage mapped to ATT&CK techniques.
 
-This creates a layer showing:
-- **Colored cells**: Techniques where you have detections
-- **White/gray cells**: Techniques where you have NO detections
-
 **Important**: The output is in YAML format, not ATT&CK Navigator JSON. You'll need to convert it in the next step.
 
 </details>
@@ -624,96 +621,33 @@ python dettect.py d -ft ../dettectinator/output/my-detection-layer.yaml -l
 python dettect.py d -ft ../dettectinator/output/my-detection-layer.yaml -l --local-stix-path ~/attack-stix-data-17.0
 ```
 
-This creates `techniques-administration-[timestamp].json` in the DeTT&CT `output/` folder.
+This creates `detection-map.json` in the DeTT&CT `output/` folder.
 
+**The csv detection example:**
+![csv-detections](images/csv-detections.png)
 ---
-
-### Step 4: Combine Layers to Identify Detection Gaps
-
-After completing either **Option A (CSV)** or **Option B (Sigma)** above, you now have:
-- A **telemetry/data sources layer** (from Exercise 2) showing which techniques you have visibility into
-- A **detection coverage layer** (converted from Dettectinator output) showing which techniques you actively detect
-
-Now you'll use **ATT&CK Navigator's layer combination feature** to create a gap analysis layer that highlights where you have telemetry but no detections.
-
-#### Step 4.1: Load Both Layers in Navigator
-
-1. Go to https://mitre-attack.github.io/attack-navigator/
-
-2. Click **"+ Create New Layer"** → **"Open Existing Layer"** → **"Upload from local"**
-
-3. Upload your **telemetry/data sources layer**: `~/DeTTECT/output/data_sources_[timestamp].json`
-   - This layer will be assigned a letter identifier (e.g., **"a"**)
-
-4. Click the **"+"** button again to open another layer
-
-5. Upload your **detection coverage layer**: `~/DeTTECT/output/techniques-administration-[timestamp].json`
-   - This layer will be assigned the next letter identifier (e.g., **"b"**)
-
-> **💡 Tip**: Navigator displays the layer identifiers in yellow at the top of each layer tab. Make note of which letter corresponds to which layer.
-
-#### Step 4.2: Create a Combined Gap Analysis Layer
-
-1. Click the **"+"** button again to create a new layer
-
-2. Select **"Create Layer from other layers"** to expand the dropdown menu
-
-3. **Configure the combination**:
-   - **Score Expression**: Enter `a - b` 
-     - **"a"** = Your telemetry/data sources layer (visibility)
-     - **"b"** = Your detection coverage layer (detections)
-     - **Subtraction logic**: This will show techniques where you have telemetry (positive score in "a") but lack detections (lower/zero score in "b")
-   
-4. **Optional: Customize the layer name**:
-   - Click **"Layer Controls"** → **"layer name"**
-   - Enter a descriptive name like `"Gap Analysis - Telemetry vs Detections"`
-
-5. Click **"Create"** at the bottom of the section
-
-#### Step 4.3: Interpret the Gap Analysis Layer
-
-You now have a combined layer that highlights your detection gaps. Here's how to read the scores:
-
-**Score Meanings:**
-- **Positive scores (colored cells)**: Techniques where you have telemetry but weak/no detection coverage
-  - **Higher scores** = Bigger gap (more telemetry sources available, fewer detections)
-  - **Example**: Score of 3 might mean 3 data sources available, 0 detections = **Priority gap!**
-- **Zero or negative scores (white/gray cells)**: 
-  - Techniques where detection coverage matches or exceeds telemetry
-  - OR techniques where you have neither telemetry nor detections
-
-**Action Items:**
-1. **Sort by score** (click on techniques and look at the score field)
-2. **Focus on high-positive scores** - These are your **critical gaps**:
-   - ✅ You already collect the required telemetry
-   - ❌ You have NO or weak detection rules
-   - ⚡ **Quick wins** - Just need to write the detection rule!
-
-> **💡 Tip**: Click on individual techniques to see the calculated score and understand which data sources you have vs which detections are missing.
 
 ### Step 4: Analyze Your Detection Gaps
 
-1. **Load the gap analysis layer in ATT&CK Navigator:**
-   - Go to https://mitre-attack.github.io/attack-navigator/
-   - Upload `output/gap-analysis.json`
+Now that you have both layers created, you can compare them to identify detection gaps.
 
-2. **Identify critical gaps (Yellow cells):**
+1. **Open both layers in ATT&CK Navigator:**
+   - Go to https://mitre-attack.github.io/attack-navigator/
+   - Upload your **telemetry/data sources layer**: `~/DeTTECT/output/data_sources_[name].json`
+   - In a separate browser tab, open Navigator again and upload your **detection coverage layer**: `~/DeTTECT/output/detection-map.json`
+
+2. **Manually compare the layers to identify critical gaps:**
 
 These are techniques where:
-- ✅ You collect the required telemetry
-- ❌ You have NO detection rules using that telemetry
+- ✅ You collect the required telemetry (colored in the data sources layer)
+- ❌ You have NO detection rules using that telemetry (white/gray in the detection layer)
 
 **Example findings you might see:**
 - You collect `Process Creation` logs but don't detect T1055 (Process Injection)
 - You have `File Creation` telemetry but no ransomware file creation detection
 - You collect `Network Traffic Flow` but don't detect data exfiltration patterns
 
-3. **Prioritize detection engineering work:**
-
-Focus on **Yellow cells** that are:
-- **High-impact techniques** (common in attacks)
-- **Relevant to your threat model** (see Exercise 4)
-- **Easy wins** (telemetry already exists, just need the rule)
+> **⚠️ Note**: ATT&CK Navigator has a layer combination feature that can create an automated gap analysis layer. However, there are currently known issues with combining layers in Navigator. For now, manual side-by-side comparison of the two layers is the recommended approach.
 
 ### Step 5: Add Detections to DeTT&CT (Optional)
 
@@ -738,20 +672,19 @@ To track your improvements over time in DeTT&CT:
 
 ### Step 6: Compare Telemetry Sources Map vs. Detection Rules Map
 
-**Note**: You've already completed this comparison by creating the gap analysis layer in Step 3. However, you can also manually compare the layers side-by-side for additional context:
+You can manually compare the layers side-by-side to identify priorities:
 
-1. **Open both layers in separate tabs:**
+1. **Open both layers in separate tabs or side-by-side:**
    - Tab 1: Your **telemetry sources layer** (`output/data_sources_[timestamp].json`)
    - Tab 2: Your **detection rules layer** (`output/my-detection-layer.json`)
-   - Tab 3: Your **gap analysis layer** (created in Step 3)
 
-2. **Use the gap analysis layer (Tab 3) to identify priorities:**
+2. **Compare the layers to identify priorities:**
 
 **Critical gaps to identify:**
-- ✅ **Techniques with telemetry AND detection** (zero/negative scores in gap layer) = Good coverage
-- ⚠️ **Techniques with telemetry but NO detection** (high positive scores in gap layer) = **Priority for detection engineering!**
-- ❌ **Techniques with NO telemetry** (zero score in telemetry layer) = Need to collect data sources first
-- ⚡ **Techniques with detection but weak telemetry** (negative scores in gap layer) = Detections may not work reliably
+- ✅ **Techniques with telemetry AND detection** (colored in both layers) = Good coverage
+- ⚠️ **Techniques with telemetry but NO detection** (colored in telemetry layer, white/gray in detection layer) = **Priority for detection engineering!**
+- ❌ **Techniques with NO telemetry** (white/gray in telemetry layer) = Need to collect data sources first
+- ⚡ **Techniques with detection but weak telemetry** (white/gray in telemetry layer, colored in detection layer) = Detections may not work reliably
 
 ![dettectinator workflow example](images/dettectinator-workflow.png)
 
