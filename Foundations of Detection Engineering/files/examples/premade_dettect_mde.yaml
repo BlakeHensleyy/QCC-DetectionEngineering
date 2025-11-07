@@ -3,10 +3,12 @@ file_type: data-source-administration
 name: 'EDR: Microsoft Defender for Endpoint (MDE)'
 domain: enterprise-attack
 systems:
-  - applicable_to: all
+  - applicable_to: Windows
+    platform:
+      - Windows
+  - applicable_to: Linux
     platform:
       - Linux
-      - Windows
 data_sources:
   # Process Activity - Both Platforms
   - data_source_name: Process Creation

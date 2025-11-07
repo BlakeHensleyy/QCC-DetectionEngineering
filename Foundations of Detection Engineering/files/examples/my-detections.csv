@@ -1,0 +1,15 @@
+TechniqueId,UseCase,Location
+T1059.001,Suspicious PowerShell Execution - Detects obfuscated PowerShell with high fidelity,Splunk
+T1003.001,Mimikatz Detection - Behavioral detection of credential dumping,CrowdStrike EDR
+T1021.002,Lateral Movement via PSExec - Network detection of SMB-based lateral movement,Palo Alto Firewall
+T1053.005,Scheduled Task Creation - Monitors for suspicious scheduled task creation,Microsoft Sentinel
+T1566.001,Phishing Email Detection - Identifies malicious email attachments and links,Microsoft Sentinel
+T1078.004,Cloud Account Compromise - Detects anomalous cloud console login patterns,Microsoft Sentinel
+T1070.004,File Deletion Activity - Monitors suspicious deletion of security logs,Splunk
+T1105,File Transfer Detection - Identifies suspicious file downloads from external sources,Palo Alto Firewall
+T1136.001,Local Account Creation - Alerts on unauthorized local user account creation,Splunk
+T1548.002,Bypass UAC Detection - Detects attempts to bypass User Account Control,CrowdStrike EDR
+T1562.001,Disable Security Tools - Monitors for disabling of AV or EDR solutions,CrowdStrike EDR
+T1543.003,Windows Service Creation - Detects malicious service installation,Splunk
+T1071.001,Web-Based C2 Detection - Identifies suspicious web traffic patterns,Palo Alto Firewall
+T1490,Ransomware Indicators - Detects volume shadow copy deletion and backup tampering,CrowdStrike EDR

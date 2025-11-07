@@ -5,7 +5,7 @@ Before detecting malicious activity, you first need data to detect on. **Telemet
 
 ## The SOC Visibility Quad
 
-![visibility-quad](images/visibility-quad.png)
+![SOC Visibility Quad](images/visibility-quad.png)
 
 ### Evolution from Triad to Quad
 
